@@ -14,4 +14,4 @@ this repo support parse standard [json](http://json.org/) and something like thi
 {
   'foo': "bar"
 }
-```js
+```
