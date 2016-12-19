@@ -1,0 +1,24 @@
+{
+  "name": "editor-json-parser",
+  "version": "1.0.0",
+  "description": "this repo support parse standard [json](http://json.org/) and something like this:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/albin3/editor-json-parser.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/albin3/editor-json-parser/issues"
+  },
+  "homepage": "https://github.com/albin3/editor-json-parser#readme",
+  "devDependencies": {
+    "jison": "^0.4.17",
+    "mocha": "^3.2.0",
+    "should": "^11.1.2"
+  }
+}
