@@ -15,3 +15,12 @@ this repo support parse standard [json](http://json.org/) and something like thi
   'foo': "bar"
 }
 ```
+## usage
+
+`npm install --save editor-json-parser`
+
+```
+let parser = require('editor-json-parser');
+let result = parser.parse('{foo: 'bar'}');
+// result: {foo: 'bar'}
+```
