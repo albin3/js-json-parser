@@ -27,7 +27,7 @@ let result = parser.parse("{foo: 'bar'}");
 // result: {foo: 'bar'}
 result = parser.parse("{'foo': 'bar'}");
 // result: {foo: 'bar'}
-result = parser.parse('{"foo": "bar"}'');
+result = parser.parse('{"foo": "bar"}');
 // result: {foo: 'bar'}
 ```
 
