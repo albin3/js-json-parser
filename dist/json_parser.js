@@ -666,21 +666,19 @@ function Parser () {
 Parser.prototype = parser;parser.Parser = Parser;
 return new Parser;
 })();
-
-
-if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
-exports.parser = json_parser;
-exports.Parser = json_parser.Parser;
-exports.parse = function () { return json_parser.parse.apply(json_parser, arguments); };
-exports.main = function commonjsMain(args) {
-    if (!args[1]) {
-        console.log('Usage: '+args[0]+' FILE');
-        process.exit(1);
-    }
-    var source = require('fs').readFileSync(require('path').normalize(args[1]), "utf8");
-    return exports.parser.parse(source);
-};
-if (typeof module !== 'undefined' && require.main === module) {
-  exports.main(process.argv.slice(1));
+var root = this
+// AMD / RequireJS
+if (typeof define !== 'undefined' && define.amd) {
+    define([], function () {
+        return json_parser;
+    });
 }
+// Node.js
+else if (typeof module !== 'undefined' && module.exports) {
+    module.exports = json_parser;
 }
+// included directly via <script> tag
+else {
+    root.json_parser = json_parser;
+}
+
