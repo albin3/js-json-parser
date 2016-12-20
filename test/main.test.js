@@ -1,6 +1,6 @@
 'use strict';
 
-let jsonParser = require('../dist/json_parser.js');
+let jsonParser = require('../');
 let should = require('should');
 
 describe ('json parser test.', function () {
