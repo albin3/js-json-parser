@@ -43,5 +43,24 @@ describe ('json parser test.', function () {
     let result = jsonParser.parse("{'foo': 'bar'}");
     result.should.deepEqual({foo: 'bar'});
   });
+
+  it ('support comment', function () {
+    let result = jsonParser.parse(`
+      {
+        // comment
+        foo: 'bar' // comment
+      }
+    `);
+    result.should.deepEqual({foo: 'bar'});
+  });
+
+  it ('support comma at last line', function () {
+    let result = jsonParser.parse(`
+      {
+        foo: 'bar',
+      }
+    `);
+    result.should.deepEqual({foo: 'bar'});
+  });
 });
 
