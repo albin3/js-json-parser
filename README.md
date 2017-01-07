@@ -17,6 +17,21 @@ this repo support parse standard [json](http://json.org/) and something like thi
   'foo': "bar"
 }
 ```
+
+> it also support comments and comma at last line
+
+```
+{
+  // comment
+  foo: 'bar'    // comment
+}
+
+{
+  foo: 'bar',
+  foo1: 'bar1',
+}
+```
+
 ## commonjs usage
 
 `npm install --save editor-json-parser`

@@ -6,6 +6,7 @@ frac  "."[0-9]+
 
 %%
 \s+      /* skip whitespace */
+[\/\/].*\n                                     /* skip comments */
 
 {int}{frac}?{exp}?\b    return 'NUMBER'
 \"(?:'\\'[\\"bfnrt/]|'\\u'[a-fA-F0-9]{4}|[^\\\0-\x09\x0a-\x1f"])*\"    yytext = yytext.substr(1,yyleng-2); return 'STRING'
@@ -22,7 +23,7 @@ frac  "."[0-9]+
 "null"         return 'NULL'
 "undefined"    return 'UNDEFINED'
 
-[a-zA-Z0-9_\u4e00-\u9fa5]+                                             return 'JSONKEY'
+[a-zA-Z0-9_\u4e00-\u9fa5]+   return 'JSONKEY'
 
 <<EOF>>        return 'EOF'
 .              return 'INVALID'
@@ -99,7 +100,11 @@ JSONObject
     ;
 
 JSONMember
-    : JSONString ':' JSONValue
+    : JSONString ':' JSONValue ','
+        {$$ = [$1, $3];}
+    | JSONKEY ':' JSONValue ','
+        {$$ = [$1, $3];}
+    | JSONString ':' JSONValue
         {$$ = [$1, $3];}
     | JSONKEY ':' JSONValue
         {$$ = [$1, $3];}
@@ -107,9 +112,9 @@ JSONMember
 
 JSONMemberList
     : JSONMember
-        {{$$ = {}; $$[$1[0]] = $1[1];}}
-    | JSONMemberList ',' JSONMember
-        {$$ = $1; $1[$3[0]] = $3[1];}
+        {{$$ = {};  $$[$1[0]] = $1[1];}}
+    | JSONMemberList JSONMember
+        {$$ = $1; $1[$2[0]] = $2[1];}
     ;
 
 JSONArray
