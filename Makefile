@@ -7,4 +7,4 @@ test:
 	cat lib/suffix.js >> ./dist/json_parser.js
 	mocha $(TEST)
 
-.PHONY: test watch install cov run dev
+.PHONY: test all
