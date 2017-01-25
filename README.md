@@ -2,6 +2,8 @@
 
 this repo support parse standard [json](http://json.org/) and something like this:
 
+[![Build Status](https://travis-ci.org/albin3/editor-json-parser.svg?branch=master)](https://travis-ci.org/albin3/editor-json-parser)
+
 > support: AMD / CommonJs / script tag
 
 ```
@@ -53,3 +55,8 @@ result = parser.parse('{"foo": "bar"}');
 
 var jsonParser = window.json_parser;
 ```
+
+## AMD support
+
+...
+
