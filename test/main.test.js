@@ -62,5 +62,14 @@ describe ('json parser test.', function () {
     `);
     result.should.deepEqual({foo: 'bar'});
   });
+  
+  it ('support {↵  a: "xxx"↵}', function () {
+    let  result = jsonParser.parse(`
+      {↵  a: 'xxx'↵}
+    `);
+
+    result.should.deepEqual({a: 'xxx'});
+  })
 });
+
 

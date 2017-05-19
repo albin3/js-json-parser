@@ -5,7 +5,7 @@ exp  [eE][-+]?[0-9]+
 frac  "."[0-9]+
 
 %%
-\s+      /* skip whitespace */
+[\s↵]+      /* skip whitespace */
 [\/\/].*\n                                     /* skip comments */
 
 {int}{frac}?{exp}?\b    return 'NUMBER'
