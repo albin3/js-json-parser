@@ -62,8 +62,8 @@ var jsonParser = window.json_parser;
 
 ...
 
-[travis-image]: https://api.travis-ci.org/albin3/editor-json-parser.svg
-[travis-url]: https://travis-ci.org/albin3/editor-json-parser
+[travis-image]: https://api.travis-ci.org/albin3/js-json-parser.svg
+[travis-url]: https://travis-ci.org/albin3/js-json-parser
 [npm-image]: https://img.shields.io/npm/v/editor-json-parser.svg
 [npm-url]: https://npmjs.org/package/editor-json-parser
 [downloads-image]: https://img.shields.io/npm/dm/editor-json-parser.svg
