@@ -9,8 +9,8 @@ frac  "."[0-9]+
 [\/\/].*\n                                     /* skip comments */
 
 {int}{frac}?{exp}?\b    return 'NUMBER'
-\"(?:'\\'[\\"bfnrt/]|'\\u'[a-fA-F0-9]{4}|[^\\\0-\x09\x0a-\x1f"])*\"    yytext = yytext.substr(1,yyleng-2); return 'STRING'
-\'(?:'\\'[\\"bfnrt/]|'\\u'[a-fA-F0-9]{4}|[^\\\0-\x09\x0a-\x1f'])*\'    yytext = yytext.substr(1,yyleng-2); return 'STRING'
+\"(?:\\[\\"]|[^\0-\x09\x0a-\x1f"])*\"    yytext = yytext.substr(1,yyleng-2); return 'STRING'
+\'(?:\\[\\']|[^\0-\x09\x0a-\x1f'])*\'    yytext = yytext.substr(1,yyleng-2); return 'STRING'
 
 "{"            return '{'
 "}"            return '}'
@@ -38,19 +38,12 @@ frac  "."[0-9]+
   ECMA-262 5th Edition, 15.12.1 The JSON Grammar.
 */
 
-
 %%
 
 JSONString
     : STRING
         { // replace escaped characters with actual character
-          $$ = yytext.replace(/\\(\\|")/g, "$"+"1")
-                     .replace(/\\n/g,'\n')
-                     .replace(/\\r/g,'\r')
-                     .replace(/\\t/g,'\t')
-                     .replace(/\\v/g,'\v')
-                     .replace(/\\f/g,'\f')
-                     .replace(/\\b/g,'\b');
+          $$ = backslash(yytext);
         }
     ;
 
@@ -131,3 +124,5 @@ JSONElementList
         {$$ = $1; $1.push($3);}
     ;
 
+%%
+const backslash = require('../lib/backslash');

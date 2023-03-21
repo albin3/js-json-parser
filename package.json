@@ -4,7 +4,8 @@
   "description": "this repo support parse standard [json](http://json.org/) and something like this:",
   "main": "dist/json_parser.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/main.test.js --require babel-register",
+    "build": "jison src/index.jison -o dist/json_parser.js"
   },
   "repository": {
     "type": "git",
@@ -14,9 +15,6 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/albin3/editor-json-parser/issues"
-  },
-  "scripts": {
-    "test": "mocha test/main.test.js --require babel-register"
   },
   "homepage": "https://github.com/albin3/editor-json-parser#readme",
   "devDependencies": {

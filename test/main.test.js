@@ -70,6 +70,54 @@ describe ('json parser test.', function () {
 
     result.should.deepEqual({a: 'xxx'});
   })
+
+  it ('support {  a: "x\\啊xx"}', function () {
+    let  result = jsonParser.parse(`
+      {  a: "x\\啊xx"}
+    `);
+
+    result.should.deepEqual({a: 'x\\啊xx'});
+  })
+
+  it ('support {  a: "x\\\\nxx"}', function () {
+    let  result = jsonParser.parse(`
+      {  a: "x\\\\nxx"}
+    `);
+
+    result.should.deepEqual({a: 'x\\nxx'});
+  })
+
+  it ('support {  a: "x\\u1234xxx"}', function () {
+    let  result = jsonParser.parse(`
+      {  a: "x\\u1234xxx"}
+    `);
+
+    result.should.deepEqual({a: 'x\u1234xxx'});
+  })
+
+  it ('support {  a: "x\\u123xxx"}', function () {
+    let  result = jsonParser.parse(`
+      {  a: "x\\u123xxx"}
+    `);
+
+    result.should.deepEqual({a: 'x\\u123xxx'});
+  })
+
+  it ('support {  a: "x\\\\"}', function () {
+    let  result = jsonParser.parse(`
+      {  a: "x\\\\"}
+    `);
+
+    result.should.deepEqual({a: 'x\\'});
+  })
+
+  it ('support {  a: "x\\""}', function () {
+    let  result = jsonParser.parse(`
+      {  a: "x\\""}
+    `);
+
+    result.should.deepEqual({a: 'x"'});
+  })
 });
 
 
